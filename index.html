@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Tawheed - دليل تصميم UI/UX الاحترافي</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #6a0dad;
+            --secondary-color: #9370db;
+            --light-color: #e6d7ff;
+            --dark-color: #4b0082;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            color: var(--text-color);
+            background-color: #f9f7ff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 4px 12px rgba(106, 13, 173, 0.2);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--light-text) !important;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+            background-size: 20px 20px;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(106, 13, 173, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(106, 13, 173, 0.2);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-weight: 600;
+            padding: 15px 20px;
+            border: none;
+        }
+        
+        .card-body {
+            padding: 25px;
+        }
+        
+        .list-group-item {
+            border: none;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(106, 13, 173, 0.1);
+        }
+        
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+        
+        .list-group-item i {
+            color: var(--primary-color);
+            margin-left: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 30px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(106, 13, 173, 0.3);
+        }
+        
+        .btn-outline-primary {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 30px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        .bg-light-section {
+            background-color: #f3ebff;
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 15px rgba(106, 13, 173, 0.2);
+        }
+        
+        .quiz-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(106, 13, 173, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .quiz-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .quiz-options {
+            margin-bottom: 30px;
+        }
+        
+        .quiz-option {
+            background-color: #f9f7ff;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-option:hover {
+            border-color: var(--secondary-color);
+            background-color: #f3ebff;
+        }
+        
+        .quiz-option.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(106, 13, 173, 0.1);
+        }
+        
+        .quiz-option.correct {
+            border-color: #28a745;
+            background-color: rgba(40, 167, 69, 0.1);
+        }
+        
+        .quiz-option.incorrect {
+            border-color: #dc3545;
+            background-color: rgba(220, 53, 69, 0.1);
+        }
+        
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .quiz-result {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(106, 13, 173, 0.05), rgba(147, 112, 219, 0.1));
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        .result-score {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 50px 0 30px;
+        }
+        
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .footer-link:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin-left: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--light-color);
+            transform: translateY(-5px);
+        }
+        
+        .next-site-btn {
+            display: inline-block;
+            background: white;
+            color: var(--primary-color);
+            border-radius: 30px;
+            padding: 15px 40px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            margin-top: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .next-site-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+            color: var(--primary-color);
+        }
+        
+        .example-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(106, 13, 173, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .example-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(106, 13, 173, 0.2);
+        }
+        
+        .example-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+        }
+        
+        .example-body {
+            padding: 20px;
+        }
+        
+        .difficulty-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .difficulty-easy {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .difficulty-medium {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .difficulty-hard {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .section-padding {
+                padding: 50px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-palette ms-2"></i> Ahmed Tawheed
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tips">نصائح UI/UX</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#errors">أخطاء شائعة</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tools">الأدوات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#examples">أمثلة</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#quiz">اختبار</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content" data-aos="fade-right">
+                        <h1 class="hero-title">دليل تصميم UI/UX الاحترافي</h1>
+                        <p class="hero-subtitle">نصائح عملية وأدوات حديثة لتصميم واجهات مستخدم فعّالة</p>
+                        <a href="#tips" class="btn btn-light btn-lg">
+                            ابدأ التعلم <i class="fas fa-arrow-left ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center" data-aos="fade-left">
+                        <i class="fas fa-laptop-code" style="font-size: 15rem; opacity: 0.7;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section id="tips" class="section-padding">
+        <div class="container">
+            <h2 class="section-title text-center" data-aos="fade-up">نصائح لتصميم UI/UX فعّال</h2>
+            <p class="text-center mb-5" data-aos="fade-up">نصائح عملية وسهلة التطبيق</p>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <h5 class="card-title">افهم المستخدم قبل كل حاجة</h5>
+                            <p class="card-text">اعمل persona وuser journeys وابدأ من احتياجاتهم مش من شكل الصفحة.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-sitemap"></i>
+                            </div>
+                            <h5 class="card-title">سهل التنقّل</h5>
+                            <p class="card-text">navigation لازم تكون بسيطة وواضحة (menu أقل من 7 عناصر، breadcrumbs لو لازم).</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-universal-access"></i>
+                            </div>
+                            <h5 class="card-title">اتبع مبادئ قابلية الاستخدام</h5>
+                            <p class="card-text">تسلسل بصري واضح، ملاحظات فورية عند الأخطاء، تناسق، و affordance (الأزرار لازم تبان قابلة للضغط).</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h5 class="card-title">اعمل تصميم متجاوب</h5>
+                            <p class="card-text">موبايل أولاً؟ في كتير من الحالات لازم تفكّر بالموبايل قبل الديسكتوب.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-wheelchair"></i>
+                            </div>
+                            <h5 class="card-title">اهتم بالوصولية</h5>
+                            <p class="card-text">نصوص قابلة للقراءة، تباين ألوان كافي، عناصر قابلة للوصول بالكيبورد، والـalt للصور.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-vial"></i>
+                            </div>
+                            <h5 class="card-title">اختبر بدري وباستمرار</h5>
+                            <p class="card-text">usability tests بسيطة مع 5-8 مستخدمين أفضل من الافتراضات.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="700">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-cubes"></i>
+                            </div>
+                            <h5 class="card-title">حافظ على نظام تصميم</h5>
+                            <p class="card-text">مكون واحد مُستخدم بطريقة منتظمة يوفر وقت المطورين ويقلل الأخطاء.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Errors Section -->
+    <section id="errors" class="section-padding bg-light-section">
+        <div class="container">
+            <h2 class="section-title text-center" data-aos="fade-up">أخطاء يجب تجنبها</h2>
+            
+            <div class="row g-4">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">أخطاء في UI (واجهات المستخدم)</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <strong>تعقيد الواجهة:</strong> عناصر كتيرة، ألوان متنافرة، معلومات زائدة — المستخدم يتوه.
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <strong>غياب التسلسل البصري:</strong> كل عنصر متساوي الأهمية — مافيش Hierarchy.
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <strong>أزرار أو روابط مش واضحة:</strong> الناس مش هتعرف إيه اللي ينفع تُضغط وإيه لا.
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <strong>محتوى نصّي سيء:</strong> كلمات مربكة في الأزرار أو رسائل الخطأ.
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <strong>عدم مراعاة الأداء:</strong> صور كبيرة، سكريبتات كتيرة — تأخّر التحميل يخسر المستخدم.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">أخطاء في UX (تجربة المستخدم)</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <strong>عدم فهم المستخدمين:</strong> القرار بناءً على رأي المصمم بس مش على بحث.
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <strong>التجاهل للاختبار:</strong> الافتراضات بتكلف وقت وفلوس.
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <strong>فشل في التعاون مع الفريق:</strong> تسليم specs متشوّشة أو متأخرة يكسّر تجربة التنفيذ.
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <strong>عدم مراعاة السياق:</strong> تصميم تجربة مناسبة لبيئة المستخدم (شبكة ضعيفة؟ جهاز قديم؟).
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <strong>تجاهل الوصولية والشمولية:</strong> فاقدين شريحة كبيرة من المستخدمين.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="section-padding">
+        <div class="container">
+            <h2 class="section-title text-center" data-aos="fade-up">الأدوات الأساسية لتصميم UI/UX</h2>
+            
+            <div class="row mb-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">أدوات أساسية لازم تتعلمها</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-pencil-ruler"></i>
+                                    <strong>برنامج تصميم واجهات + بروتوتايب:</strong> Figma (الأكثر شيوعاً للتعاون، تصميم، وبروتوتايب).
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-image"></i>
+                                    <strong>أدوات تحرير صور/رسومات:</strong> Adobe Photoshop / Illustrator أو بدائل أخف.
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-chart-line"></i>
+                                    <strong>أدوات اختبار المستخدم وجمع الملاحظات:</strong> Hotjar / Lookback / UserTesting.
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-project-diagram"></i>
+                                    <strong>أدوات إدارة وتصميم النظام:</strong> Zeroheight أو استخدام Design System داخل Figma.
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-code"></i>
+                                    <strong>أدوات handoff للمطورين:</strong> Figma / Zeplin / Inspect.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">أفضل الأدوات (مختصر)</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-star"></i>
+                                    <strong>Figma</strong> — تصميم، تعاون، بروتوتايب، plugins.
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-star"></i>
+                                    <strong>Adobe (XD/Firefly)</strong> — Adobe Firefly يضيف إمكانيات توليد صور/محتوى بالـAI.
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-star"></i>
+                                    <strong>Sketch</strong> — قوي لكن كان متمحور على macOS (أشهر قبل Figma).
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="text-center mb-4" data-aos="fade-up">أدوات الذكاء الاصطناعي المساعدة</h3>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h5 class="card-title">ChatGPT / GPT-based plugins</h5>
+                            <p class="card-text">توليد microcopy، أفكار لنصوص، مراجعة محتوى UX copy.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-magic"></i>
+                            </div>
+                            <h5 class="card-title">Figma AI plugins</h5>
+                            <p class="card-text">(Magician, Automator, Blush...) — توليد أيقونات، اقتراحات تصميم، أوتوميشن للمهام المتكررة.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-wand-magic-sparkles"></i>
+                            </div>
+                            <h5 class="card-title">Uizard</h5>
+                            <p class="card-text">تحويل وصف نصي أو صور إلى واجهات تلقائياً (rapid mockups).</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <h5 class="card-title">Adobe Firefly</h5>
+                            <p class="card-text">توليد عناصر مرئية وصور توضيحية للـUI.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <h5 class="card-title">Midjourney / Stable Diffusion</h5>
+                            <p class="card-text">صور توضيحية أو moodboards سريعة للأفكار.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="alert alert-info mt-4" data-aos="fade-up">
+                <i class="fas fa-info-circle ms-2"></i>
+                <strong>ملاحظة:</strong> الأدوات دي بتسرّع جزء من الشغل — لكن مش هتغيّر أهمية التفكير في المستخدم، البحث، والاختبار. لو استخدمت AI صح: هتوفر وقت في المراحل الابتدائية (ideation, copy, placeholder assets) وتقدر تركز على القرارات التصميمية المهمة.
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section id="examples" class="section-padding bg-light-section">
+        <div class="container">
+            <h2 class="section-title text-center" data-aos="fade-up">أمثلة توضيحيّة</h2>
+            <p class="text-center mb-5" data-aos="fade-up">5 أمثلة متدرجة في الصعوبة (سهلة → صعبة)</p>
+            
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="example-card">
+                        <div class="example-header">
+                            <h5 class="mb-0">مثال 1 — Placeholder microcopy</h5>
+                        </div>
+                        <div class="example-body">
+                            <span class="difficulty-badge difficulty-easy">سهل</span>
+                            <h6>المهمة:</h6>
+                            <p>استخدام نموذج AI (مثل ChatGPT أو Magician) لكتابة نص زر CTA بديل عن "Submit" لصفحة تسجيل.</p>
+                            <h6>ليه مفيد:</h6>
+                            <p>يظهر قد إيه copy بسيط يغيّر معدل التحويل.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="example-card">
+                        <div class="example-header">
+                            <h5 class="mb-0">مثال 2 — Wireframe سريع لموبايل</h5>
+                        </div>
+                        <div class="example-body">
+                            <span class="difficulty-badge difficulty-easy">سهل-متوسط</span>
+                            <h6>المهمة:</h6>
+                            <p>برسم wireframe يدوي أو في Figma خلال 15 دقيقة لترتيب العناصر الأساسية لشاشة قائمة منتجات.</p>
+                            <h6>ليه مفيد:</h6>
+                            <p>يتحقق ترتيب المحتوى قبل التفاصيل البصرية.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="example-card">
+                        <div class="example-header">
+                            <h5 class="mb-0">مثال 3 — اختبار قابلية استخدام</h5>
+                        </div>
+                        <div class="example-body">
+                            <span class="difficulty-badge difficulty-medium">متوسط</span>
+                            <h6>المهمة:</h6>
+                            <p>إجراء جلسة مع 5 مستخدمين لمدة 20 دقيقة كل واحد، تسجيل المشكلات الرئيسية.</p>
+                            <h6>ليه مفيد:</h6>
+                            <p>يكتشف مشاكل وظيفية قبل التطوير.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="example-card">
+                        <div class="example-header">
+                            <h5 class="mb-0">مثال 4 — نمط تباين WCAG</h5>
+                        </div>
+                        <div class="example-body">
+                            <span class="difficulty-badge difficulty-medium">متوسط-صعب</span>
+                            <h6>المهمة:</h6>
+                            <p>اختيار نظام ألوان وتأمين نسب التباين للنصوص والعناصر التفاعلية.</p>
+                            <h6>ليه مفيد:</h6>
+                            <p>يحسّن الوصولية ويقلل المشاكل القانونية والتجريبية.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="example-card">
+                        <div class="example-header">
+                            <h5 class="mb-0">مثال 5 — Design System صغير</h5>
+                        </div>
+                        <div class="example-body">
+                            <span class="difficulty-badge difficulty-hard">صعب</span>
+                            <h6>المهمة:</h6>
+                            <p>تصميم وتوثيق أزرار، فورمات، أيقونات، ومسارات تفاعل في Figma بحيث يقدر الفريق يستخدمها.</p>
+                            <h6>ليه مفيد:</h6>
+                            <p>يقلل التكرار ويوحّد التجربة عبر المنتج.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI in UI/UX Section -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title text-center" data-aos="fade-up">دور الذكاء الاصطناعي في UI/UX</h2>
+            
+            <div class="row mb-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">أدوار الذكاء الاصطناعي</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <strong>توليد أفكار (Ideation):</strong> توليد خيارات واجهة، moodboards، أو copy سريع.
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-sync-alt"></i>
+                                    <strong>أتمتة مهام مكرّرة:</strong> توليد placeholder content، توليد أيقونات أو variations تلقائية.
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-edit"></i>
+                                    <strong>تحسين المحتوى:</strong> تحسين microcopy، تقصير رسائل الخطأ، توليد تعليمات.
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-rocket"></i>
+                                    <strong>تسريع النمذجة:</strong> تحويل سكتش أو وصف نصي إلى واجهة أولية (Uizard، Figma AI).
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-chart-bar"></i>
+                                    <strong>تحليل بيانات المستخدم:</strong> استخراج أنماط من جلسات المستخدم، heatmaps، واقتراح تحسينات.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">5 أمثلة توضيحية (AI في التطبيق)</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <strong>AI يكتب 5 نسخ مختلفة لزر CTA</strong> — تختبرهم A/B. (سهل)
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <strong>Plugin في Figma يولّد أيقونات</strong> من وصف بسيط — تسرّع الخطوة البصرية. (سهل)
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <strong>أداة تحول سكرينشوت من موقع قديم</strong> إلى wireframe — تبدأ منه وتعدّله. (متوسط)
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <strong>تحليل نصوص تعليقات المستخدمين</strong> باستخدام NLP لاستخراج pain points — توصّل لمشاكل متكررة بسرعة. (متوسط-صعب)
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <strong>توليد عناصر مرئيّة (illustrations)</strong> مخصّصة للعلامة التجارية باستخدام Firefly/Midjourney — مع قواعد تصميم ثابتة. (صعب)
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="alert alert-warning" data-aos="fade-up">
+                <i class="fas fa-exclamation-triangle ms-2"></i>
+                <strong>تحذير عملي:</strong> اعمل دائماً مراجعة إنسانية لما يولده الـAI، خصوصاً في أمور الوصولية والمحتوى الحساس.
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="section-padding bg-light-section">
+        <div class="container">
+            <h2 class="section-title text-center" data-aos="fade-up">اختبار تقييم المعرفة</h2>
+            <p class="text-center mb-5" data-aos="fade-up">10 أسئلة اختياريّة (Multiple Choice) للتقييم</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="quiz-container" data-aos="fade-up">
+                        <div id="quiz-content">
+                            <!-- Quiz content will be dynamically generated -->
+                        </div>
+                        
+                        <div class="quiz-navigation">
+                            <button id="prev-btn" class="btn btn-outline-primary" disabled>
+                                <i class="fas fa-arrow-right me-2"></i> السابق
+                            </button>
+                            <span id="question-counter">1 / 10</span>
+                            <button id="next-btn" class="btn btn-primary">
+                                التالي <i class="fas fa-arrow-left ms-2"></i>
+                            </button>
+                        </div>
+                        
+                        <div id="quiz-result" class="quiz-result">
+                            <div class="result-score" id="score-display">0/10</div>
+                            <h3>نتيجة الاختبار</h3>
+                            <p id="result-message"></p>
+                            <button id="restart-quiz" class="btn btn-primary mt-3">
+                                إعادة الاختبار <i class="fas fa-redo ms-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Topics Section -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title text-center" data-aos="fade-up">عناوين رئيسية للبحث</h2>
+            <p class="text-center mb-5" data-aos="fade-up">لو عايز تتعمّق أكتر</p>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mx-auto">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h5 class="card-title">مبادئ Heuristics</h5>
+                            <p class="card-text">عالمية قابلية الاستخدام (Usability Heuristics).</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mx-auto">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h5 class="card-title">Design Systems</h5>
+                            <p class="card-text">إنشاء، توثيق، وحوكمة.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mx-auto">
+                                <i class="fas fa-universal-access"></i>
+                            </div>
+                            <h5 class="card-title">Accessibility & WCAG</h5>
+                            <p class="card-text">تطبيق عملي على منتجك.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mx-auto">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h5 class="card-title">Mobile-first & Responsive</h5>
+                            <p class="card-text">تقنيات وأمثلة.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mx-auto">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h5 class="card-title">UX Research Methods</h5>
+                            <p class="card-text">Interviews, Surveys, Diary studies, Usability testing.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mx-auto">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h5 class="card-title">AI in Design</h5>
+                            <p class="card-text">Use cases, ethics, and human-in-the-loop workflows.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="700">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mx-auto">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <h5 class="card-title">Performance & UX</h5>
+                            <p class="card-text">كيف يؤثر وقت التحميل على معدلات التحويل.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5" data-aos="fade-up">
+                <p>لو حابب أجيب لك مصادر/مقالات لكل عنوان أقدر أعمل بحث ومراجع مباشرة.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h3 class="footer-title">Ahmed Tawheed</h3>
+                    <p>موقع تفاعلي متخصص في تصميم واجهات المستخدم وتجربة المستخدم (UI/UX) لتقديم محتوى تعليمي احترافي.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="footer-title">روابط سريعة</h5>
+                    <a href="#tips" class="footer-link">نصائح UI/UX</a>
+                    <a href="#errors" class="footer-link">أخطاء شائعة</a>
+                    <a href="#tools" class="footer-link">الأدوات</a>
+                    <a href="#examples" class="footer-link">أمثلة</a>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="footer-title">أقسام الموقع</h5>
+                    <a href="#quiz" class="footer-link">الاختبار</a>
+                    <a href="#" class="footer-link">المصادر</a>
+                    <a href="#" class="footer-link">المدونة</a>
+                    <a href="#" class="footer-link">اتصل بنا</a>
+                </div>
+                
+                <!-- <div class="col-lg-4 mb-4">
+                    <h5 class="footer-title">تابعنا</h5>
+                    <p>اشترك في نشرتنا البريدية للحصول على أحدث المقالات والمصادر في مجال تصميم UI/UX.</p>
+                    <div class="input-group mt-3">
+                        <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
+                        <button class="btn btn-light" type="button">اشترك</button>
+                    </div>
+                </div>
+            </div> -->
+            
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Ahmed Tawheed. جميع الحقوق محفوظة.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="./w2.html" class="next-site-btn">
+                        الانتقال للموقع التالي <i class="fas fa-arrow-left ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        
+        // Quiz data
+        const quizData = [
+            {
+                question: "ما هو أول خطوة في تصميم تجربة مستخدم فعّالة؟",
+                options: ["اختيار الألوان", "عمل Personas وبحث المستخدم", "اختيار فونت مناسب", "تصميم شعار"],
+                correctAnswer: 1
+            },
+            {
+                question: "أيٌّ من التالي يعتبر خطأ في واجهة المستخدم؟",
+                options: ["أزرار واضحة", "تباين ألوان منخفض جداً", "تسلسل بصري واضح", "نصوص قصيرة وواضحة"],
+                correctAnswer: 1
+            },
+            {
+                question: "ما هي أداة التعاون المشتركة الأكثر استخداماً لعام 2025 لتصميم واجهات؟",
+                options: ["Figma", "Photoshop", "Notepad", "Excel"],
+                correctAnswer: 0
+            },
+            {
+                question: "ما هو عدد المستخدمين الموصى به عادة لاختبار قابلية الاستخدام الأساسي؟",
+                options: ["1-2", "5-8", "20-30", "50+"],
+                correctAnswer: 1
+            },
+            {
+                question: "أيٌّ من التالي يعتبر دور AI في التصميم؟",
+                options: ["استبدال كامل للمصمم", "أتمتة مهام مكررة وتحسين المحتوى", "حذف اختبار المستخدم", "عمل سيو SEO فقط"],
+                correctAnswer: 1
+            },
+            {
+                question: "أي مبدأ من مبادئ الاستخدام يرتبط بخطأ المستخدم prevention؟",
+                options: ["Visibility of system status", "Conceal errors", "Random colors", "Large fonts only"],
+                correctAnswer: 0
+            },
+            {
+                question: "ما الذي يسهّل تسليم التصميم للمطورين؟",
+                options: ["صور عالية الدقة بدون تنسيق", "ملفات منظمة و design specs واضحة", "ترك كل شيء للتطوّر", "عدم وجود تعليقات"],
+                correctAnswer: 1
+            },
+            {
+                question: "ماذا نعني بـ 'Design System'؟",
+                options: ["مجموعة من القوانين والأنماط المتسقة للواجهة", "نظام تشغيل للحاسوب", "قاعدة بيانات", "سيرفر استضافة"],
+                correctAnswer: 0
+            },
+            {
+                question: "أي أداة تُستخدم لتوليد صور توضيحيّة بالذكاء الاصطناعي؟",
+                options: ["Midjourney", "Excel", "VS Code", "Terminal"],
+                correctAnswer: 0
+            },
+            {
+                question: "ما أفضل طريقة لتقييم أثر تغيير واجهة جديدة؟",
+                options: ["A/B testing وقياس مؤشرات الأداء", "الرأي الشخصي فقط", "تجاهل البيانات", "مشاركة على السوشيال ميديا فقط"],
+                correctAnswer: 0
+            }
+        ];
+        
+        // Quiz variables
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+        
+        // DOM elements
+        const quizContent = document.getElementById('quiz-content');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const questionCounter = document.getElementById('question-counter');
+        const quizResult = document.getElementById('quiz-result');
+        const scoreDisplay = document.getElementById('score-display');
+        const resultMessage = document.getElementById('result-message');
+        const restartQuizBtn = document.getElementById('restart-quiz');
+        
+        // Initialize quiz
+        function initQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = [];
+            quizResult.style.display = 'none';
+            quizContent.style.display = 'block';
+            showQuestion();
+            updateButtons();
+        }
+        
+        // Show current question
+        function showQuestion() {
+            const question = quizData[currentQuestion];
+            let optionsHTML = '';
+            
+            question.options.forEach((option, index) => {
+                optionsHTML += `
+                    <div class="quiz-option" data-index="${index}">
+                        ${String.fromCharCode(65 + index)}) ${option}
+                    </div>
+                `;
+            });
+            
+            quizContent.innerHTML = `
+                <div class="quiz-question">${currentQuestion + 1}. ${question.question}</div>
+                <div class="quiz-options">
+                    ${optionsHTML}
+                </div>
+            `;
+            
+            // Add click event to options
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    document.querySelectorAll('.quiz-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Store user answer
+                    userAnswers[currentQuestion] = parseInt(this.dataset.index);
+                });
+            });
+            
+            // Restore previous answer if exists
+            if (userAnswers[currentQuestion] !== undefined) {
+                document.querySelectorAll('.quiz-option')[userAnswers[currentQuestion]].classList.add('selected');
+            }
+            
+            // Update question counter
+            questionCounter.textContent = `${currentQuestion + 1} / ${quizData.length}`;
+        }
+        
+        // Update navigation buttons
+        function updateButtons() {
+            prevBtn.disabled = currentQuestion === 0;
+            
+            if (currentQuestion === quizData.length - 1) {
+                nextBtn.innerHTML = 'إنهاء الاختبار <i class="fas fa-check ms-2"></i>';
+            } else {
+                nextBtn.innerHTML = 'التالي <i class="fas fa-arrow-left ms-2"></i>';
+            }
+        }
+        
+        // Show quiz results
+        function showResults() {
+            quizContent.style.display = 'none';
+            quizResult.style.display = 'block';
+            
+            // Calculate score
+            score = 0;
+            userAnswers.forEach((answer, index) => {
+                if (answer === quizData[index].correctAnswer) {
+                    score++;
+                }
+            });
+            
+            // Display score
+            scoreDisplay.textContent = `${score} / ${quizData.length}`;
+            
+            // Display message based on score
+            let message = '';
+            if (score >= 8) {
+                message = 'ممتاز! لديك معرفة ممتازة بمجال تصميم UI/UX.';
+            } else if (score >= 6) {
+                message = 'جيد جداً! لديك معرفة جيدة ولكن يمكنك تحسينها في بعض المجالات.';
+            } else if (score >= 4) {
+                message = 'متوسط. تحتاج إلى المزيد من التعلم وال practice في مجال تصميم UI/UX.';
+            } else {
+                message = 'مبتدئ. نوصي بدراسة المواد المقدمة في الموقع بشكل أعمق.';
+            }
+            
+            resultMessage.textContent = message;
+        }
+        
+        // Event listeners
+        prevBtn.addEventListener('click', function() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+                updateButtons();
+            }
+        });
+        
+        nextBtn.addEventListener('click', function() {
+            if (currentQuestion < quizData.length - 1) {
+                currentQuestion++;
+                showQuestion();
+                updateButtons();
+            } else {
+                showResults();
+            }
+        });
+        
+        restartQuizBtn.addEventListener('click', initQuiz);
+        
+        // Initialize quiz on page load
+        initQuiz();
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
